@@ -1,4 +1,4 @@
-version: '3'
+version: 3
 
 services:
   next:
@@ -7,6 +7,4 @@ services:
       dockerfile: Dockerfile
     container_name: next
     ports:
-      - "${FRONTEND_PORT}:3000"
-    environment:
-      - PORT=${FRONTEND_PORT}
+      - "3000:3000"
