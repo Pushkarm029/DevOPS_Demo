@@ -1,34 +1,24 @@
 {
-  "name": "udemy_todo-list-server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "name": "devops",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node app.js",
-    "server": "node app.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Hsins/udemy_MERN-Todo-List.git"
-  },
-  "keywords": [
-    "express",
-    "mongodb",
-    "react",
-    "redux"
-  ],
-  "author": "Hsins",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Hsins/udemy_MERN-Todo-List/issues"
-  },
-  "homepage": "https://github.com/Hsins/udemy_MERN-Todo-List#readme",
   "dependencies": {
-    "concurrently": "^4.1.1",
-    "express": "^4.17.1",
-    "mongoose": "^5.7.5"
+    "react": "^18",
+    "react-dom": "^18",
+    "next": "13.5.4"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4"
   }
 }

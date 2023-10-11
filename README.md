@@ -1,89 +1,36 @@
-<div align="right">
-  <img src="https://img.shields.io/badge/Completion-100%25-blue.svg" />
-  <a href="https://github.com/Hsins/udemy_MERN-Todo-List/blob/master/LICENSE" alt="License">
-    <img src="https://img.shields.io/github/license/Hsins/udemy_MERN-Todo-List.svg" />
-  </a>
-</div>
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# Udemy Project: MERN Todo-List
+## Getting Started
 
-This is a hands-on project from the Udemy course - [The Advanced Web Developer Bootcamp](https://www.udemy.com/the-advanced-web-developer-bootcamp/) by Colt Steele. Refactored using the React-Redux in ES6/ES7 syntax instead of jQuery. You can find this jQuery version [here](https://github.com/Hsins/udemy_jQuery-Todo-List).
-  
-# Demo
-
-<div align="center">
-  <img src="demo/demo.gif" />
-</div>
-
-You can see a complete working example [here](https://hsins-mern-todolist.herokuapp.com/). Or you can run the demo on your local machine, please follow the instructions in [Getting Started](#getting-started).
-
-# Features
-
-- A MERN (MongoDB + Express.js + React.js + Node.js) full stack project.
-- Refactored with ES6 and ES7 syntax (eg: async/await)
-- RESTful API:
-
-```
--------------------------------------------------------------------------
-Todos Route
--------------------------------------------------------------------------
-[Method]  [Route]
-GET       /api/todos              Fetch all todos
-POST      /api/todos              Create a new todo
-GET       /api/todos/:id          Fetch a todo status
-POST      /api/todos/:id          Toggle (complete or not) a task
-PATCH     /api/todos/:id          Update the todo content
-DELETE    /api/todos/:id          Delete todo
-```
-
-# Technologies
-
-## Frontend
-
-- [axios](https://github.com/axios/axios)
-- [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
-- [React](https://reactjs.org/)
-- [Redux](https://redux.js.org/)
-- [Redux-Thunk](https://github.com/reduxjs/redux-thunk)
-
-## Backend
-
-- [nodejs](https://nodejs.org/en/)
-- [express](https://gulpjs.com/)
-- [mongodb](https://webpack.js.org/concepts/)
-
-Check [`package.json`](https://github.com/Hsins/udemy_MERN-Todo-List/blob/master/package.json) file for more information.
-
-# Getting Started
-
-Follow the instructions below to set up the environment and run this project on your local machine. Note that you should setup your MongoDB Atlas Cluster first to get your database. You can find the [Quick Note](https://hackmd.io/@Hsins/r1oFNI864) here.
-
-1. Clone this repository.
+First, run the development server:
 
 ```bash
-# Clone repository
-$ git clone https://github.com/Hsins/udemy_MERN-Todo-List.git
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-2. Install dependencies via NPM or Yarn
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-# Install dependencies via npm
-$ npm install
-$ cd client
-$ npm install
-$ cd ..
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-# Install dependencies via yarn
-$ yarn install
-$ cd client
-$ yarn install
-$ cd ..
-```
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-3. Run the server.
+## Learn More
 
-```bash
-# Run server
-$ npm run dev
-```
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
