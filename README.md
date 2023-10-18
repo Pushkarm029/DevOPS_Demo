@@ -30,3 +30,22 @@ minikube service --url nextjs-service
 # To scale up containers
 kubectl scale deployment.apps/nextjs-app --replicas=10
 ```
+
+### using kyverno - policy engine
+
+```bash
+minikube start
+
+helm repo update
+
+helm install kyverno kyverno/kyverno -n kyverno --create-namespace
+
+kubectl get pods -n kyverno
+
+kubectl apply -f kyverno-policies/match_label.yml
+
+kubectl get pods -n kyverno
+
+kubectl apply -f manifests/deployment.yml
+# If manifests/deployment.yml have my-app as label policy will fail
+```

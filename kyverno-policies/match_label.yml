@@ -1,0 +1,19 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-pod-labels-in-kyverno-namespace
+spec:
+  rules:
+  - name: check-pod-labels
+    match:
+      resources:
+        kinds:
+        - Pod
+        namespaces:
+        - default
+    validate:
+      message: "Pods in the kyverno namespace must have specific labels"
+      pattern:
+        metadata:
+          labels:
+            app: "my-app"
