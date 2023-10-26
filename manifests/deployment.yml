@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nextjs-app
+  name: react-app
 spec:
   replicas: 1
   selector:
@@ -13,7 +13,7 @@ spec:
         app: my-app
     spec:
       containers:
-        - name: nextjs-container
+        - name: react-container
           image: pushkarm029/devops_demo:main
           ports:
             - containerPort: 3000
