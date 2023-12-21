@@ -9,6 +9,7 @@ on:
 env:
   REGISTRY: docker.io
   IMAGE_NAME: ${{ github.repository }}
+  REF: ${{ github.ref_name}}
 
 jobs:
   build:
@@ -45,6 +46,12 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - name: Output metadata
+        run: |
+          echo "${{ steps.meta.outputs.tags }}"
+          echo "${{ steps.meta.outputs.labels }}"
+          echo "${{ env.REF }}"
+      
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
