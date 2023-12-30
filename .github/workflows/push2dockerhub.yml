@@ -81,20 +81,35 @@ jobs:
             cat
             exit 1  # Explicitly fail the job
           }
-
-      # getToken step
-  get-docker-hb-token:
+  # Update repository description step
+  update-docker-hb-description:
     runs-on: ubuntu-latest
-    outputs:
-      token: ${{ steps.step1.outputs.token }}
     steps:
-      - id: step1
-        run: |
-          curl -X POST \
-            -H "Content-Type: application/json" \
-            -d '{"username":"${{ secrets.DOCKER_USER }}","password":"${{ secrets.DOCKER_PASSWORD }}"}' \
-            https://hub.docker.com/v2/users/login \
-            -o token.json
-          token=$(jq -r .token token.json)
-          echo "::set-output name=token::$token"
-          echo "TOKEN: $token"  # Optional logging
+    - uses: actions/checkout@v2
+    - name: Get Docker Hub token
+      id: get-docker-hb-token
+      run: |
+        curl -X POST \
+          -H "Content-Type: application/json" \
+          -d '{"username":"${{ secrets.DOCKER_USER }}","password":"${{ secrets.DOCKER_PASSWORD }}"}' \
+          https://hub.docker.com/v2/users/login \
+          -o token.json
+        token=$(jq -r .token token.json)
+        echo "token=token" >> "$GITHUB_OUTPUT"
+        echo "TOKEN: $token"
+    - name: Update Docker Hub repository description
+      run: |
+        body="{
+          \\"full_description\\": \"${{ github.event.repository.description }}\"
+        }"
+        [ -n "${{ github.event.repository.description }}" ] && body+=",\\"description\\": \"${{ github.event.repository.description }}\""
+
+        curl -X PATCH \
+          -H "Content-Type: application/json" \
+          -H "Authorization: JWT ${{ steps.get-docker-hb-token.outputs.token }}" \
+          -d "$body" \
+          https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/ || {
+            echo "API call failed with status code $?"
+            echo "Response body:"
+            cat
+            exit 1  # Explicitly fail the job
