@@ -77,10 +77,9 @@ jobs:
     - name: Update Docker Hub repository description
       run: |
         body="{
-          \\"full_description\\": \"${{ github.event.repository.description }}\"
+          \\"full_description\\": \"${{ github.event.repository.description }}\",
+          \\"description\\": \"${{ github.event.repository.description }}\"
         }"
-        [ -n "${{ github.event.repository.description }}" ] && body+=",\\"description\\": \"${{ github.event.repository.description }}\""
-
         curl -X PATCH \
           -H "Content-Type: application/json" \
           -H "Authorization: JWT ${{ steps.get-docker-hb-token.outputs.token }}" \
@@ -89,5 +88,3 @@ jobs:
             echo "API call failed with status code $?"
             echo "Response body:"
             echo "${{ steps.get-docker-hb-token.outputs.token }}"
-            cat
-            exit 1  # Explicitly fail the job
