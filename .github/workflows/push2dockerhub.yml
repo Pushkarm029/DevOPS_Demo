@@ -73,9 +73,9 @@ jobs:
           set -e  # Fail on any error
 
           echo "Full curl command:"
-          echo "curl -X PUT -H 'Content-Type: application/json' -H 'Authorization: JWT ${DOCKERHUB_TOKEN}' -d '{\"description\": \"${{ github.event.repository.description }}\"}' https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/"
+          echo "curl -X PATCH -H 'Content-Type: application/json' -H 'Authorization: JWT ${DOCKERHUB_TOKEN}' -d '{\"description\": \"${{ github.event.repository.description }}\"}' https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/"
 
-          curl -X PUT -H 'Content-Type: application/json' -H 'Authorization: JWT ${DOCKERHUB_TOKEN}' -d '{"description": "${{ github.event.repository.description }}"}' https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/ || {
+          curl -X PATCH -H 'Content-Type: application/json' -H 'Authorization: JWT ${DOCKERHUB_TOKEN}' -d '{"description": "${{ github.event.repository.description }}"}' https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/ || {
             echo "API call failed with status code $?"
             echo "Response body:"
             cat
