@@ -81,3 +81,20 @@ jobs:
             cat
             exit 1  # Explicitly fail the job
           }
+
+      # getToken step
+  get-docker-hb-token:
+    runs-on: ubuntu-latest
+    outputs:
+      token: ${{ steps.step1.outputs.token }}
+    steps:
+      - id: step1
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"username":"${{ secrets.DOCKER_USER }}","password":"${{ secrets.DOCKER_PASSWORD }}"}' \
+            https://hub.docker.com/v2/users/login \
+            -o token.json
+          token=$(jq -r .token token.json)
+          echo "::set-output name=token::$token"
+          echo "TOKEN: $token"  # Optional logging
