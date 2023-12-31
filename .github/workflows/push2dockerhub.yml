@@ -73,16 +73,14 @@ jobs:
           -o token.json
         token=$(jq -r .token token.json)
         echo "token=token" >> "$GITHUB_OUTPUT"
+    - name: get token
+      run: echo ${{ steps.get-docker-hb-token.outputs.token }}
     - name: Update Docker Hub repository description
       run: |
-        body="{
-          \"full_description\": \"${{ github.event.repository.description }}\",
-          \"description\": \"${{ github.event.repository.description }}\"
-        }"
         curl -i -X PATCH \
           -H "Content-Type: application/json" \
           -H "Authorization: JWT ${{ steps.get-docker-hb-token.outputs.token }}" \
-          -d "$body" \
+          -d "{\"description\":\"${{ github.event.repository.description }}\"}" \
           https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/ || {
             echo "API call failed with status code $?"
             echo "Response body:"
