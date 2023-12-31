@@ -73,6 +73,7 @@ jobs:
           -o token.json
         token=$(jq -r .token token.json)
         echo "token=token" >> "$GITHUB_OUTPUT"
+        echo $token
     - name: get token
       run: echo ${{ steps.get-docker-hb-token.outputs.token }}
     - name: Update Docker Hub repository description
