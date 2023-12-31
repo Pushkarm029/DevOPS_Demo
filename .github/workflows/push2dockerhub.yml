@@ -76,8 +76,8 @@ jobs:
     - name: Update Docker Hub repository description
       run: |
         body="{
-          \\"full_description\\": \"${{ github.event.repository.description }}\",
-          \\"description\\": \"${{ github.event.repository.description }}\"
+          \"full_description\": \"${{ github.event.repository.description }}\",
+          \"description\": \"${{ github.event.repository.description }}\"
         }"
         curl -X PATCH \
           -H "Content-Type: application/json" \
