@@ -86,6 +86,6 @@ jobs:
           https://hub.docker.com/v2/repositories/${{ env.IMAGE_NAME }}/ || {
             echo "API call failed with status code $?"
             echo "Response body:"
-            echo "${{ steps.get-docker-hb-token.outputs.token }}"
+            echo ${{ steps.get-docker-hb-token.outputs.token }}
             cat
             exit 1  # Explicitly fail the job
