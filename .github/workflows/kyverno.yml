@@ -13,7 +13,12 @@ env:
 jobs:
   scan:
     runs-on: ubuntu-latest
-    steps:    
+    steps:  
+    - name: Get All Branches Name
+      id: get-all-branches
+      run: |
+        all_branches=$(curl -s https://api.github.com/repos/${{ env.IMAGE_NAME }}/branches)
+        echo $all_branches
     - name: Get Branches Name
       id: get-branches
       run: |
